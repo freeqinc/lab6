@@ -1,38 +1,52 @@
-'use strict';
-
-// Call this function when the page loads (the "ready" event)
-$(document).ready(function() {
-	initializePage();
-})
-
-/*
- * Function that is called when the document is ready.
+/**
+ *     (function () {
+ *         'use strict';
+ *
+ *          // rest of code
+ *     }());
+ *
+ *  This is immediate function invocation. Because javascript is function scoped, this is good practice to guard
+ *  'use strict'; from breaching into any other files that a framework might link together.
+ *
  */
-function initializePage() {
-	$('.project a').click(addProjectDetails);
 
-	$('#colorBtn').click(randomizeColors);
-}
+(function() {
+    'use strict';
 
-/*
- * Make an AJAX call to retrieve project details and add it in
- */
-function addProjectDetails(e) {
-	// Prevent following the link
-	e.preventDefault();
+    // Call this function when the page loads (the "ready" event)
+    $(document).ready(function() {
+        initializePage();
+    });
 
-	// Get the div ID, e.g., "project3"
-	var projectID = $(this).closest('.project').attr('id');
-	// get rid of 'project' from the front of the id 'project3'
-	var idNumber = projectID.substr('project'.length);
+    /*
+     * Function that is called when the document is ready.
+     */
+    function initializePage() {
+        $('.project a').click(addProjectDetails);
+        $('#colorBtn').click(randomizeColors);
+    }
 
-	console.log("User clicked on project " + idNumber);
-}
+    /*
+     * Make an AJAX call to retrieve project details and add it in
+     */
+    function addProjectDetails(e) {
+        // Prevent following the link
+        e.preventDefault();
 
-/*
- * Make an AJAX call to retrieve a color palette for the site
- * and apply it
- */
-function randomizeColors(e) {
-	console.log("User clicked on color button");
-}
+        // Get the div ID, e.g., "project3"
+        var projectID = $(this).closest('.project').attr('id');
+        // get rid of 'project' from the front of the id 'project3'
+        var idNumber = projectID.substr('project'.length);
+
+        console.log("User clicked on project " + idNumber);
+    }
+
+    /*
+     * Make an AJAX call to retrieve a color palette for the site
+     * and apply it
+     */
+    function randomizeColors(e) {
+        console.log("User clicked on color button");
+    }
+
+}());
