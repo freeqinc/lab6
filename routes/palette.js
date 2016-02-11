@@ -7,5 +7,5 @@ exports.randomPalette = function(req, res) {
     // @NOTE: randomPalette.title does the same thing as randomPallet['title']
     // res.send('Your random palette is called: ' + randomPalette.title);
     //
-    res.json([randomPalette]);
+    res.json('test', randomPalette);
 };
