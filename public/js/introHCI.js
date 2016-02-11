@@ -11,7 +11,6 @@
  */
 
 (function() {
-    'use strict';
 
     // Call this function when the page loads (the "ready" event)
     $(document).ready(function() {
@@ -38,8 +37,22 @@
         // get rid of 'project' from the front of the id 'project3'
         var idNumber = projectID.substr('project'.length);
 
+        var proj = $(this).closest('.project');
+        $.get('http://localhost:3000/project/' + idNumber, function (res) {
+
+            console.log('Now I have ' + res.details + ' and the actual ' + proj );
+
+            proj.find('img').attr('src', res.image);
+            proj.find('p').html(res.title);
+            proj.find('a').append('<small>' + res.date + '</small');
+            proj.find('.details').html(res.summary);
+
+            console.log(projectHTML);
+        });
+
         console.log("User clicked on project " + idNumber);
     }
+
 
     /*
      * Make an AJAX call to retrieve a color palette for the site
@@ -47,6 +60,18 @@
      */
     function randomizeColors(e) {
         console.log("User clicked on color button");
+        $.get('http://foobar.com', function (res) {
+            console.log(res);
+        }, 'jsonp');
+        $.get('/palette', function (res) {
+            console.log(res.colors);
+            var colors = res.colors.hex;
+            $('body').css('background-color', colors[0]);
+            $('.thumbnail').css('background-color', colors[1]);
+            $('h1, h2, h3, h4, h5, h5').css('color', colors[2]);
+            $('p').css('color', colors[3]);
+            $('.project img').css('opacity', 0.75);
+        });
     }
 
 }());
