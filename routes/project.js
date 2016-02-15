@@ -9,5 +9,6 @@ exports.projectInfo = function(req, res) { 
     }
 
     var project = projects[projectID - 1]; // of by one, our first project has index 0
-    res.json(project);
+    // res.json(project);
+    res.render('projects', projects);
 };
